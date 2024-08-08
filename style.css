@@ -1,0 +1,561 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    /* Restante do seu CSS para html e body */
+}
+
+*{
+
+    font-family: 'Poppins', sans-serif;
+}
+
+
+html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+body {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+html, body {
+    background-color: #ffffff; /* Branco */
+    /* Restante do seu CSS para html e body */
+}
+
+
+div.main {
+    height: 100%;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+div.main {
+    background-color: #ffffff; /* Branco */
+    /* Restante do seu CSS para div.main */
+}
+
+
+div.element {
+    width: 85%;
+    padding: 16pt;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 #ffffff, 0 6px 20px 0 #ffffff;
+    border-radius: 16px;
+    margin: auto;
+}
+
+div.tablang {
+    display: block;
+}
+
+p {
+    color: #444444;
+    font-size: 16pt;
+    line-height: 1;
+    margin: 4pt;
+}
+
+p.value-description {
+    text-indent: -16pt;
+    margin-left: 20pt;
+}
+
+
+p.ideodesc {
+    font-family: 'Poppins', sans-serif;
+    color: #333333;
+    font-size: 18pt;
+    line-height: 18pt;
+    margin-top: 12pt;
+    margin-bottom: 0;
+}
+
+h1 {
+    color: #222222;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32pt;
+    text-align: center;
+    line-height: 32pt;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    color: #333333;
+    font-family: 'Poppins', sans-serif;
+    font-size: 36pt;
+    line-height: 36pt;
+    margin-top: 12pt;
+    margin-bottom: 0;
+}
+
+h3 {
+    color: #333333;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18pt;
+    line-height: normal;
+    margin-top: 12pt;
+    margin-bottom: 0;
+}
+
+li {
+    font-size: 16pt;
+    text-indent: 16pt;
+}
+
+dt {
+    font-family: 'Poppins', sans-serif;
+}
+
+dd {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 12pt;
+}
+
+a {
+    font-family: 'Poppins', sans-serif;
+}
+
+img.center {
+    display: block;
+    margin: 1em auto;
+    width: 20%;
+    min-width: 400pt;
+}
+
+.button{
+    background-color: #fff;
+    padding: 10px 20px; /* Espaçamento interno */
+  border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 20 px;
+    font-weight: 500;
+    transition: 0.3s linear;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    bottom: 0; /* Na parte inferior */
+    left: 0; /* Alinhado à esquerda */
+  }
+
+  .button.Selected{
+    background-color: #FF6600;
+    padding: 10px 20px; /* Espaçamento interno */
+  border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 20 px;
+    font-weight: 500;
+    transition: 0.3s linear;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    bottom: 0; /* Na parte inferior */
+    left: 0; /* Alinhado à esquerda */
+  }
+  
+  .button.Selected:after {
+    content: "❭";
+    /* Estilo para a seta, se necessário */
+  }
+  
+
+.small_button {
+    background-color: #73b7dc;
+    font-family: 'Arial', serif;
+    border: none;
+    border-radius: 8pt;
+    color: black;
+    padding: 8pt;
+    min-width: 100px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 18pt;
+    margin-left: auto;
+    margin-right: 21%;
+    cursor: pointer;
+}
+
+div.axis {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+div.bar {
+    height: 36pt;
+    line-height: 36pt;
+    padding: 8pt;
+    margin-top: 4pt;
+    margin-bottom: 4pt;
+    border-width: 4px;
+    border-right-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: #222222;
+    background-color: #eeeeee;
+    display: block;
+    width: 50%;
+}
+
+span.weight-300 {
+    font-weight: 300;
+}
+
+canvas {
+    border-color: #444444;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8pt;
+    display: block;
+    margin: 8pt 22% -1% 38%;
+    width: 40%;
+}
+
+img.index {
+    border-color: #444444;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8pt;
+    display: block;
+    margin: 8pt;
+    width: 80%;
+}
+
+img.allvalues {
+    border-color: #444444;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8pt;
+    display: block;
+    width: 60%;
+}
+
+#langPicker {
+    position: static;
+    right: 10em;
+    font-size: 20px;
+    top: 1em;
+}
+
+/*Tabs*/
+.tab {
+  overflow: hidden;
+  display: block;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #ccc;
+}
+
+.tab button.active {
+  background-color: #bbb;
+  border-bottom: 2px solid LightSlateGrey;
+}
+
+.tabcontent {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 12px;
+  border-top: none;
+  animation: fadeEffect 1s;
+  align-content: center;
+    width: 60%;
+}
+.pdf-container{
+    align-self: center;
+}
+p.index_text{
+  margin: 10px;
+  text-align: justify;
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Navbar */
+div.navdiv {
+    display: block;
+}
+
+ul.ulnav {
+  list-style-type: none;
+  margin: 0;
+    padding: 10px 0 0;
+    width: 14%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  border-right: 10px solid white;
+  font-family: 'Arial', serif;
+}
+
+li.nav a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+
+#navres a {
+  display: block;
+  color: #555;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li.nav a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li.nav a.activenav {
+  background-color: #5dade2;
+  color: white;
+}
+
+li.nav a:hover:not(.active), #navres a:hover {
+  background-color: #888;
+  color: white;
+}
+
+#bottomnav {
+    position: absolute;
+    bottom: 20px;
+    width: 100%
+}
+
+.input-button {
+    font-family: 'Arial', serif;
+    border: none;
+    border-radius: 8pt;
+    padding: 8pt;
+    width: 50%;
+    min-width: 500pt;
+    text-align: center;
+    font-size: 24pt;
+    margin: -2px auto;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Estilo quando o campo de entrada está ativo (com foco) */
+.input-button:focus {
+    box-shadow: 0 0 5px #2196f3; /* Adiciona um efeito de destaque quando o campo está ativo */
+}
+
+#alternativas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    width: 80%; /* Largura da div */
+    padding: 20px; /* Espaçamento interno */
+    margin: 0 auto 5px;
+}
+#alternativas .button {
+    background: lightgrey;
+    text-align: left;
+    position: relative;
+    color:black;
+    font-size: 22px;
+}
+#alternativas .button:after {
+    content: ">";
+    position: absolute;
+    right: 2%;
+}
+
+#alternativas * {
+    margin: 5px;
+}
+
+/*aqui consigo mexer no trem que envolve os circulos*/
+
+
+.button.AltCircle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    width: 50%;
+    min-width: 200px;
+    max-width: 350px;
+    background: #ffffff;
+    flex-direction: column;
+    border: 1px solid black;
+    font-size: 10px;
+}
+
+.circle {
+    width: 85%;
+    height: 100%;
+    min-width: 200px;
+    min-height: 250px;
+    border-radius: 50%;
+    background: linear-gradient(to right, green 50%, red 50%);
+    position: relative;
+}
+
+.circle .number {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circle .left {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.circle .right {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.circle .top {
+    top: 30%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle .bottom {
+    top: 70%; /* Inicia na metade de baixo do círculo */
+    height: 40%; /* Ocupa metade da altura do círculo */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente dentro da metade inferior */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+#alternativasCircle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%; /* Largura da div */
+    padding: 20px; /* Espaçamento interno */
+    margin: 0 auto 5px;
+}
+
+#alternativasCircle .AltCircle {
+    margin: 10px;
+}
+
+
+
+
+@media (max-width: 900px), (-webkit-min-device-pixel-ratio: 2){
+    div.navdiv {
+        display: none;
+    }
+
+    div.main {
+        margin-left: 0;
+        min-height: 0;
+        width: auto !important;
+        border-width: 0 !important;
+    }
+    body {
+        width: auto;
+        box-shadow: none;
+    }
+    html {
+        background-color: #e5e5e5
+    }
+    .tab {
+        font-size: 16px;
+    }
+    canvas {
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+    .button {
+        min-width: 0;
+        max-width: 80%;
+        width: 80%;
+        font-size: 25px;
+        justify-content: center;
+    align-items: center;
+    }
+
+    p.question {
+        min-height: 224px;
+        max-width: 80%;
+        width: auto;
+        font-size: 35px;
+        text-align: justify;
+        line-height: 1.5;
+    }
+
+    .small_button{
+       font-size: 5em;
+    }
+
+    .AltCircle p {
+        font-size: 20px;
+    }
+
+    .circle .number{
+        font-size: 25px;
+    }
+
+    #alternativas{
+        width: 100%;
+        margin: 0;
+    }
+    .small_button{
+        font-size: 20px;
+    }
+
+}
+

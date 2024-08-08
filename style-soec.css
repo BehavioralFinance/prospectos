@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: #fff;
+  padding-top: 20px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.heading {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.settings .question {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.settings #alternativas button{
+  width: calc(100% - 40px); /* Subtrai 40px do total para deixar a caixa de texto e o número do mesmo comprimento dos botões */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background: #f0f0f0;
+  color: #333;
+  font-size: 15px;
+  border: 2px solid #ccc;
+  transition: 0.3s linear;
+  position:center;
+}
+
+.settings #alternativas button {
+  cursor: pointer;
+}
+
+.settings input[type='text'],
+.settings input[type='number'] {
+  font-size: 18px;
+}
+
+.btn {
+  width: 100%; /* Faz o botão ter o tamanho total do container */
+  padding: 10px 20px; /* Espaçamento interno */
+border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20 px;
+  font-weight: 500;
+  transition: 0.3s linear;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0; /* Na parte inferior */
+  left: 0; /* Alinhado à esquerda */
+}
+
+.btn:after {
+  content: "❭";
+  /* Estilo para a seta, se necessário */
+}
+
+.btn-inativo {
+  background: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.btn-ativo {
+  background: #FF7800;
+  cursor: pointer;
+}
+
+.settings #alternativas button.btn:hover,
+.btn:hover,.btn-inativo  {
+  background:#f0f0f0;
+  color: #7A8794;
+}
+
+.btn1 {
+  width: 100%; /* Faz o botão ter o tamanho total do container */
+  padding: 10px 20px; /* Espaçamento interno */
+border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20 px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s linear;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn1-inativo {
+  background: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.btn1-ativo {
+  background: #FF7800;
+}
+
+.settings #alternativas button.btn1:hover,
+.btn1:hover {
+  background:#f0f0f0;
+  color: #7A8794;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #FF7800;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+  margin: 10px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Estilo para o botão de rádio antes de ser marcado */
+input[type='radio'] {
+  accent-color: #cacdd1; /* Cor cinza claro */
+}
+
+/* Estilo para o botão de rádio após ser marcado */
+input[type='radio']:checked {
+  accent-color: #FF7800; /* Cor laranja */
+}
+
+#alternativas {
+  /* Seus estilos existentes para #alternativas... */
+  border-bottom: 1px solid #eaeaea; /* Linha fina e clara */
+  margin-bottom: 20px; /* Espaçamento entre a borda e o botão Continuar */
+}
+
+.radio-label {
+  font-size: 13px;
+  margin-left: 10px;
+  vertical-align: middle;
+  color: #404A52; /* Cor da fonte cinza escuro */
+}
+.radio-container {
+  padding: 10px 0; /* Espaçamento acima e abaixo de cada alternativa */
+  border-bottom: 1px solid #eaeaea; /* Linha na parte inferior */
+}
+
+
+
+@media (max-width: 468px) {
+  .container {
+    max-width: 100%;
+    padding: 30px;
+    position:center;
+  }
+
+  .heading
+ { font-size: 14px;}
+  
+.settings {
+    font-size: 14px;
+  }
+  
+  .question {font-size: 14px;}
+ 
+  .btn {
+    max-width: 100%;
+    font-size: 12px;
+  }
+  .loader {
+    width: 50px;
+    height: 50px;
+  }
+}

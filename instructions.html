@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="style-instructions.css" />
+    <title>QUIZ-Qual é o seu perfil de investidor?</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading"> Instruções para o Quiz</h1>
+        <div class="start-screen">
+            <p><b>Bem-vindo ao quiz!</b></p>
+            <br>
+            <ulstyle="text-align: left>
+            <li><b>Duração:</b> 5 a 10 minutos</li>
+            <li><b>Confidencialidade:</b> Suas respostas serão tratadas de forma confidencial e anônima.</li>
+            <li><b>Respostas:</b> Não há respostas "corretas" ou "erradas". Opte pela opção que melhor representa o que você pensa.</li>
+            <li><b>Completude:</b> Mesmo que sejam parecidas, responda todas as perguntas para que possamos calcular seus resultados.</li>
+        </ul>
+        <br>
+        <div class="start-screen">
+            <p><b>FIQUE ATENTO!</b></p>
+            <br>
+            <ulstyle="text-align: left>
+            <li><b>Para escolher uma alternativa, você deve selecionar o círculo correspondente a ela.</b></li>
+            <li><b>Seja cuidadoso com suas respostas, pois, uma vez confirmadas, não poderão ser alteradas.</b></li>
+              </ul>
+              <br>
+            <div class="buttons">
+                <button data-i18n="inst-nvm" class="quit" onclick="location.href='index.html';">Sair</button>
+                <br>
+                <button data-i18n="inst-gotit" class="cont" onclick="location.href='socioEconomics.html';">Continuar</button>
+            </div>
+    <script type="text/javascript">
+        const versaoAtual = '1.0';
+        if (localStorage.getItem('versao') !== versaoAtual) {
+            localStorage.clear();
+            localStorage.setItem('versao', versaoAtual);
+        }
+    </script>
+</body>
+</html>

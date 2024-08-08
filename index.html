@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="style-index.css" />
+    <title>QUIZ-Qual é o seu perfil de investidor?</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <br></br>
+        <br></br>
+        <h1 class="heading">Qual é o seu perfil de investidor?</h1>
+        <div class="divider"></div>
+        <div class="intro-section">
+            <p class="intro-text";  style="text-align: justify; font-size:14px;">Você sabe como suas emoções, metas e disposição para correr riscos podem te ajudar a escolher os investimentos mais adequados para você? <b>Participe da nossa pesquisa e dê o primeiro passo para descobrir!</b></p>
+            <button class="btn" id="start-quiz">Começar o Quiz</button>
+        </div>
+        
+    <div class="sponsors-section" style="text-align: center;">
+        
+        <hr>
+        <br></br>
+            <h2 style="font-size: 12px;"> REALIZAÇÃO:</h2>
+            <!-- Substitua abaixo com os logos ou nomes dos patrocinadores/apoiadores -->
+            <img src=img/prpqnovo.png alt="Patrocinador 1" style="max-width: 200px; margin: 10px;">
+
+            <h2 style="font-size: 12px;"> APOIO:</h2>
+            <img src=img/cnpq-logo.png alt="Patrocinador 2" style="max-width: 140px; margin: 15px;">
+            <img src=img/FUNDAÇÃO+DE+AMPARO+À+PESQUISA+DO+ESTADO+DE+MINAS+GERAIS.jpg alt="Patrocinador 3" style="max-width: 155px; margin: 10px;">
+            <br></br>
+    </hr>
+        </div>
+
+        <div class="start-screen" style="display:none;">
+            <p class="index_text">
+                Para participar da pesquisa, leia atentamente o Termo de Consentimento Livre e Esclarecido e, no final da página, marque a caixa.
+                Caso ele não esteja aparecendo no seu navegador acesse o <a href="https://drive.google.com/file/d/1UJE18ExHbwZm6XQwaahx1hNVlpLGcJ-7/view?usp=sharing">link. </a> <br>
+            </p>
+            <embed class="pdf-container" src="./TCLE.pdf" width="50%" height="500px" type="application/pdf"/>
+            <ul><input type="radio"  style=" width:18px; height:18px; margin-right: 5px" onclick="location.href='instructions.html';" id="startbutton">  Eu li o Termo de Consentimento Livre e Esclarecido da pesquisa e concordo em participar voluntariamente.</ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.getElementById('start-quiz').addEventListener('click', function() {
+            document.querySelector('.intro-section').style.display = 'none';
+            document.querySelector('.sponsors-section').style.display = 'none';
+            document.querySelector('.start-screen').style.display = 'block';
+        });
+
+        // Mantenha a lógica da versão fora do evento de clique para não interferir
+        const versaoAtual = '1.0';
+        if (localStorage.getItem('versao') !== versaoAtual) {
+            localStorage.clear();
+            localStorage.setItem('versao', versaoAtual);
+        }
+    </script>
+</body>
+</html>
+

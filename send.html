@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="stylesend.css" />
+    <title>QUIZ-Qual é o seu perfil de investidor?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <h1 class="heading"> Resultados do Quiz</h1>
+    <hr>
+    <br>
+    <div class="start-screen">
+        <p class="question" style="display: flex; flex-direction: column" id="mensagem">
+            Obrigado por participar!
+            <br><br/>
+            Aguarde alguns instantes estamos salvando as respostas e calculando seu resultado!
+        </p>
+        <br><br/>
+        <!-- Spinner de carregamento -->
+        <div class="loader" id="spinner"></div>
+        <br>
+        <div>
+            <button class="quit" id="restartbutton" style="display: none;">Reenviar</button>
+            <a class="btn" href="https://sites.google.com/view/seuperfildeinvestidor/" style="margin-top: 10px; display: none;" id="verPerfisButton">Ver os perfis de aversão à perda</a>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+       // Evento para o botão de reenvio
+document.getElementById("restartbutton").addEventListener("click", function() {
+    document.getElementById("restartbutton").style.display = "none";
+    sendInformation();
+});
+
+// Função para enviar as informações
+function sendInformation() {
+    let data = {};
+    data.SocioEconomics = JSON.parse(localStorage.SocioEconomics);
+    data.RiskAverssion = JSON.parse(localStorage.RiskAverssion);
+    data.Quiz = JSON.parse(localStorage.Quiz);
+
+    let jsonData = JSON.stringify(data);
+    let encodedData = encodeURIComponent(jsonData);
+
+    let url = `https://script.google.com/macros/s/AKfycby7vlwGMpMw36HLgxlYpsP4C7g0GK5a2rVUHdUeyNDGzlYGSzv6zlXLmx0vVpor3hI3tQ/exec?data=${encodedData}`;
+
+    fetch(url, {
+        method: "GET"
+    }).then(response => {
+        sucessoNoEnvio();
+    }).catch(error => {
+        falhaNoEnvio();
+    });
+}
+
+// Função para lidar com sucesso no envio
+function sucessoNoEnvio() {
+    document.getElementById("spinner").style.display = "none";
+    calcularEExibirCoeficiente();
+}
+
+// Função para lidar com falha no envio
+function falhaNoEnvio() {
+    document.getElementById("spinner").style.display = "none";
+    document.getElementById("mensagem").textContent = "Ops..algo deu errado, clique no botão abaixo";
+    document.getElementById("restartbutton").style.display = "block";
+}
+
+function calcularEExibirCoeficiente() {
+     if (localStorage.Quiz) {
+        const quiz = JSON.parse(localStorage.Quiz);
+        const coeficiente = Math.max(quiz.etapa1 /quiz.etapa3, 0.01);
+
+        const baseStyle = "font-family: 'Poppins', sans-serif; font-size: 1em;";
+        const linhaDoTempoContainerStyle = "position: relative; margin: 52px 0;";
+        const linhaStyle = "position: absolute; width: 100%; height: 4px; background-color: #c0c0c0; top: 10px;";
+        const itemLinhaDoTempoStyle = "position: absolute; width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; border: 2px solid #c0c0c0; top: 1px;";
+
+        const perfis = ["Cauteloso", "Conservador", "Equilibrado", "Moderado", "Arrojado", "Aventureiro"];
+        const perfisDescricao = [
+            "Extremamente focado em segurança, o investidor cauteloso se desvia de riscos que possam levar a perdas, escolhendo investimentos de renda fixa com garantias fortes e sacrificando a possibilidade de lucros maiores. Mesmo que isso possa resultar em ganhos que não superam a inflação, a preservação do capital é a sua maior preocupação, como indicado pela forma como você avalia a relação de risco e retorno, representando uma forte aversão a perdas.",
+            "O conservador é um perfil que coloca a proteção do capital em primeiro lugar, preferindo riscos mínimos e valorizando investimentos seguros e relativamente líquidos. Esse investidor evita riscos de perda quase a qualquer custo, optando por aplicações de renda fixa com garantias robustas. A forma como você avalia a relação de risco e retorno reflete uma aversão significativa à perda, priorizando a segurança sobre ganhos potenciais.",
+            "Investidores equilibrados preferem uma harmonia entre lucratividade e segurança, estando abertos a riscos moderados. Este perfil prioriza a preservação do capital e está disposto a aceitar riscos baixos a moderados em busca de rendimentos. Com uma preferência por investimentos de baixo risco e alta liquidez, a forma como você avalia a relação de risco e retorno sugere uma cautela um pouco mais acentuada contra perdas.",
+            "O investidor moderado valoriza um equilíbrio entre risco e retorno, optando por riscos calculados em busca de uma rentabilidade sólida. Este perfil adapta suas estratégias de investimento conforme as flutuações do mercado, e a forma como você avalia a relação de risco e retorno indica uma aversão à perda que varia de neutra a ligeiramente baixa, refletindo uma postura equilibrada em relação a ganhos e segurança.",
+            "O perfil arrojado combina a busca por rentabilidade elevada com uma dose de prudência. Embora esteja disposto a assumir riscos consideráveis, há uma cautela subjacente que orienta suas escolhas de investimento. A forma como você avalia a relação de risco e retorno denota uma busca moderada por ganhos, equilibrando o desejo de lucros com uma sensatez na hora de evitar perdas.",
+            "O investidor aventureiro é impulsionado pela busca de altos rendimentos e está preparado para enfrentar riscos significativos no mercado. Este perfil não se intimida com a possibilidade de perdas substanciais e se concentra intensamente em maximizar os ganhos. A forma como você avalia a relação de risco e retorno reflete uma forte inclinação para buscar altos retornos em vez de priorizar a segurança."
+        ];
+
+        let indexPerfil = coeficiente >= 4 ? 5 : coeficiente >= 2.5 ? 4 : coeficiente >= 1.75 ? 3 : coeficiente >= 1 ? 2 : coeficiente >= 0.5 ? 1 : 0;
+
+        const mensagemEl = document.querySelector('#mensagem');
+        mensagemEl.innerHTML = "";
+
+        const linhaDoTempoContainer = document.createElement("div");
+        linhaDoTempoContainer.style = linhaDoTempoContainerStyle;
+        const linha = document.createElement("div");
+        linha.style = linhaStyle;
+        linhaDoTempoContainer.appendChild(linha);
+
+        perfis.forEach((perfil, i) => {
+        const perfilItem = document.createElement("div");
+        perfilItem.style = itemLinhaDoTempoStyle + `left: calc(${(6 - i) * 100 / 7}% - 10px);`;
+
+        if (5 - indexPerfil === i) {
+            perfilItem.style.backgroundColor = "#FF6600";
+            perfilItem.style.borderColor = "#FF6600";
+
+            // Comentando o código que exibe o coeficiente
+            /* const coeficienteElement = document.createElement("div");
+            coeficienteElement.style = `
+                ${baseStyle}
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 1em;
+                color: #FF6600;
+                font-weight: bold;
+            `;
+            coeficienteElement.textContent = `${coeficiente.toFixed(2)}`;
+            perfilItem.appendChild(coeficienteElement); */
+        }
+
+            linhaDoTempoContainer.appendChild(perfilItem);
+
+            if (5 - indexPerfil !== i) {
+                const perfilNaoMarcado = document.createElement("div");
+                perfilNaoMarcado.style = `
+                    ${baseStyle}
+                    position: absolute;
+                    left: calc(${(6 - i) * 100 / 7}% - 10px);
+                    bottom: 5px;
+                    text-align: center;
+                    writing-mode: vertical-rl;
+                    top: -10px;
+                    transform: rotate(-145deg);
+                    font-style: italic;
+                    font-size: 0.7em;
+                `;
+                perfilNaoMarcado.textContent = perfil;
+                linhaDoTempoContainer.appendChild(perfilNaoMarcado);
+            }
+        });
+
+        mensagemEl.appendChild(linhaDoTempoContainer);
+
+        const balao = document.createElement("div");
+        balao.style = `
+            
+        
+            border-radius: 2px;
+            padding: 20px;
+            width: auto;
+            max-width: 100%;
+            z-index: 100;
+            position: relative;
+            top: 5px;
+        `;
+        balao.innerHTML = `<h3 style="${baseStyle} color: #FF6600; text-align: justify; font-size: 25px;">O seu perfil de risco é ${perfis[5 - indexPerfil]}</h3><br><p style="${baseStyle} color: #333333;  text-align: justify;font-size: 14px;">${perfisDescricao[5 - indexPerfil]}</p>`;
+
+        mensagemEl.appendChild(balao);
+
+        // Adiciona a linha de divisão após o balão
+        const divisaoLinha = document.createElement("hr");
+        divisaoLinha.style = "border: none; height: 2px; background-color: #FF6600; margin: 20px 0;";
+        mensagemEl.appendChild(divisaoLinha);
+
+        // Cria o novo texto no estilo de um blog
+        // Cria o novo texto no estilo de um blog
+const novoTexto = document.createElement("div");
+novoTexto.className = "blog-post";
+novoTexto.style = `
+  ${baseStyle}
+  text-align: justify;
+  font-size: 1em;
+  color: #333333;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0;
+`;
+
+
+novoTexto.innerHTML = `
+  <div style="max-width: 600px; margin: auto; background-color: white; ">
+        <!-- Introduction Section -->
+      <div style="padding: 10px 0; text-align: center;">
+        <h2 style="color: #7A8794; font-size: 18px; font-weight: bold; text-align: justify;">O que é perfil de risco?</h2>  <br>
+        <p style="font-size: 14px; text-align: justify;">O conceito de risco em investimentos é subjetivo e varia entre as pessoas. Para alguns, pode representar perigo ou incerteza, enquanto para outros, é uma oportunidade ou até fonte de emoção. O perfil de risco de um investidor, que indica sua tolerância ao risco, é crucial. Porém, avaliar esse perfil não se limita apenas a medir tal tolerância. Inclui também compreender a capacidade do investidor de enfrentar perdas, a necessidade de assumir riscos para atingir metas financeiras e a disposição para lidar com perdas financeiras, aspectos influenciados por fatores psicológicos e comportamentais. Entender o próprio perfil de risco é vital para qualquer investidor, pois permite adotar estratégias mais alinhadas às preferências individuais, aumentando as chances de alcançar objetivos financeiros, enquanto se mantém um nível de risco aceitável. Abaixo, apresentamos um passo a passo para você avaliar esses outros aspectos que também devem ser considerados na hora de investir.</p>
+      </div>
+      <br>
+      <!-- Passo a Passo Section -->
+      <div style="border-radius: 2px; background-color: #FF6600; color: white; padding: 24px;">
+        <h3 style="font-size: 18px; text-align: center;"><b>5</b> Dicas de Ouro para o Investidor</h3>
+      </div>
+      <br>
+
+      <!-- Additional Text Section1 -->
+      <div style="display: flex; align-items: flex-star; margin-bottom: 10px;">
+        <div style="border-radius: 4px; width: 50px; height: 50px; background-color: #FF6600; color: white; font-size: 20px; font-weight: bold; text-align: center; line-height: 50px; margin-right: 10px;">1</div>
+        <div style="flex: 1; font-size: 14px;"><b>"Arriscar ou não, eis a questão":</b> O ponto de partida para qualquer investidor é compreender sua própria tolerância ao risco. Você já iniciou esse processo ao responder ao questionário. Aqui, o foco é em descobrir quão confortável você se sente com as incertezas e as potenciais perdas que acompanham os investimentos. Essa etapa envolve uma reflexão interna sobre sua disposição para aceitar riscos em busca de maiores retornos.</div>
+      </div>
+      <div style="display: flex; align-items: flex-star; margin-bottom: 10px;">
+        <div style="border-radius: 4px; width: 50px; height: 50px; background-color: #FF6600; color: white; font-size: 20px; font-weight: bold; text-align: center; line-height: 50px; margin-right: 10px;">2</div>
+        <div style="flex: 1; font-size: 14px;"><b>Saiba até onde você pode ir!:</b> Busque entender como diferentes fatores financeiros impactam sua capacidade de enfrentar os altos e baixos do mercado financeiro. É crucial determinar seu horizonte temporal de investimento (curto, intermediário, longo), pois isso define o tempo disponível para alcançar suas metas financeiras. Além disso, avalie a necessidade de você ter dinheiro disponível para cobrir despesas imprevistas ou emergenciais, e considere sua situação financeira, como seguros para proteger o seu patrimônio e a sua família e o seu nível de endividamento, para determinar quão preparado você está para enfrentar riscos.</div>
+      </div>
+       <div style="display: flex; align-items: flex-star; margin-bottom: 10px;">
+        <div style="border-radius: 4px; width: 50px; height: 50px; background-color: #FF6600; color: white; font-size: 20px; font-weight: bold; text-align: center; line-height: 50px; margin-right: 10px;">3</div>
+ <div style="flex: 1; font-size: 14px;"> <b>Compreenda o Princípio de 'No Pain, No Gain'</b>: No pain no gain é uma expressão em inglês cuja tradução literal é "sem dor, sem ganho". No contexto dos investimentos, um princípio amplamente aceito na economia é que o risco e o retorno estão intrinsecamente ligados: para alcançar maiores lucros, é necessário estar disposto a aceitar mais risco. O foco aqui é descobrir o nível de risco necessário para atingir suas metas financeiras. Isso envolve avaliar o quanto seu investimento deve render para alcançar seus objetivos financeiros e entender o impacto do ambiente de risco de mercado, incluindo taxas de juros e inflação, nas suas decisões de investimento. Também é importante refletir sobre as consequências financeiras e emocionais de não atingir seus objetivos, o que pode exigir a disposição para assumir mais riscos.</div>      
+ </div>
+       <div style="display: flex; align-items: flex-star; margin-bottom: 10px;">
+        <div style="border-radius: 4px; width: 50px; height: 50px; background-color: #FF6600; color: white; font-size: 20px; font-weight: bold; text-align: center; line-height: 50px; margin-right: 10px;">4</div>
+        <div style="flex: 1; font-size: 14px;"> <b>Saiba o porquê de fazer o que está fazendo:</b> Quanto mais você entender sobre finanças e produtos de investimento, melhores serão suas decisões. Um entendimento sólido pode ajudá-lo a manter a calma em períodos de volatilidade e evitar decisões impulsivas baseadas em emoções. Portanto, invista tempo e recursos em sua educação financeira.</div>
+      </div>
+       <div style="display: flex; align-items: flex-star; margin-bottom: 10px;">
+        <div style="border-radius: 4px; width: 50px; height: 50px; background-color: #FF6600; color: white; font-size: 20px; font-weight: bold; text-align: center; line-height: 50px; margin-right: 10px;">5</div>
+        <div style="flex: 1; font-size: 14px;"><b>Reavalie Regularmente Seu Perfil de Investidor:</b> A vida está em constante mudança, e seu perfil de investidor também deve evoluir. Reavalie periodicamente sua tolerância ao risco e objetivos financeiros, considerando mudanças pessoais e profissionais. Adaptar-se ao dinamismo do mercado e realinhar suas estratégias de investimento é crucial para o sucesso a longo prazo.</div>
+      </div>
+     
+        <!-- FINAL Section -->
+      <div style="padding: 10px 0; text-align: center;">
+        <p style="font-size: 14px; text-align: justify;"> Compreender esses componentes do seu perfil de risco é vital para uma jornada de investimentos bem-sucedida. Cada aspecto influencia diretamente como você interage com o mercado financeiro e toma decisões de investimento. Lembre-se, investir é um equilíbrio entre risco e retorno, e entender seu próprio perfil pode ajudar a maximizar seus ganhos enquanto minimiza suas perdas. Boa sorte na sua jornada financeira!</p>
+      </div>
+      <br></br> 
+      <!-- Additional Text Section2 -->
+      <!-- Passo a Passo Section -->
+      <div style="background-color: #c00c20; color: white; padding: 24px;">
+        <h3 style="font-size: 16px;">Nota de Esclarecimento sobre a Avaliação do Perfil de Risco.</h3>
+      <br>
+        <p style="font-size: 14px; text-align: justify;">
+            Olá, agradecemos por responder ao nosso questionário.</strong> <br></br>
+             Conforme mencionado anteriormente, o propósito deste questionário é desenvolver uma ferramenta para avaliar o perfil de investidores. Atualmente, ele está em fase de construção. O seu resultado abaixo é apenas com base no seu grau de aversão a perda, isso significa que estamos te mostrando como você tende a agir em decisões financeiras, isso envolve escolher comprar algo hoje ou guardar e economizar para o futuro, a decisão em contratar seguros, a preocupação com a aposentadoria e é claro a escolha de investimentos em relação ao risco e ao retorno. Assim, o relatório forneceu apenas uma visão geral do perfil de risco do investidor. As informações contidas nele são fornecidas exclusivamente para fins informativos e, portanto, não devem ser interpretadas como recomendações de compra ou venda de produtos financeiros.
+             <br></br> 
+             <strong>  Lembre-se: </strong> esta avaliação é um guia, não um destino final. Encorajamos uma exploração contínua e uma reflexão profunda sobre suas metas financeiras e estilo de vida, para que suas decisões de investimento sejam tão informadas e personalizadas, quanto possível.</p>     
+            </p>
+      </div>
+
+      <!-- Footer -->
+      <div style="background-color: #dddddd; text-align: left; padding: 20px;">
+        <p style="font-size: 12px; color: #333;">
+          Contato:<br>
+          Aureliano Bressan<br>
+          Faculdade de Ciências Econômicas – FACE/UFMG – Campus Pampulha<br>
+          Av. Antônio Carlos, 6627 – Pampulha – Belo Horizonte – MG<br>
+          CEP 31270-901<br>
+          Sala 4039<br>
+          Telefone:+55 (31) 3409-7242 <br>
+          <a href="mailto:aureliano.bressan@gmail.com" style="color: #c00c20;">aureliano.bressan@gmail.com</a>
+        </p>
+      </div>
+    </div>
+        `;
+
+        mensagemEl.appendChild(novoTexto);
+    }
+}
+
+    // Inicializa o envio das informações
+    sendInformation();
+
+</script>
+</body>
+</html>
